@@ -10,6 +10,175 @@ namespace AdventOfCode
     {
     }
 
+    public class Day6BlockRedistributorResult
+    {
+        public int RedisributionCount;
+        public int LoopCount;
+        public int[] Distibution;
+    }
+
+    public class Day6BlockDistributionStackPushResult
+    {
+        public bool Success;
+        public int Count;
+
+        public Day6BlockDistributionStackPushResult(bool success, int count)
+        {
+            Success = success;
+            Count = count;
+        }
+    }
+
+    public class Day6BlockDistributionStack
+    {
+        public class StackItem
+        {
+            public int[] Distribution;
+            public int StackCount;
+        }
+
+        readonly List<StackItem> _stack = new List<StackItem>();
+        int _count;
+
+        public Day6BlockDistributionStackPushResult Push(int[] distribution)
+        {
+            foreach ( var dist in _stack)
+            {
+                if (AreEqual(dist.Distribution, distribution))
+                    return new Day6BlockDistributionStackPushResult(false, dist.StackCount);
+            }
+            _count++;
+            _stack.Add(new StackItem { Distribution = distribution, StackCount = _count });
+            return new Day6BlockDistributionStackPushResult(true, _count);
+        } 
+
+        public bool AreEqual(int [] dist1, int[] dist2)
+        {
+            if (dist1.Length != dist2.Length)
+                return false;
+
+            for (int i = 0; i < dist1.Length; i++)
+            {
+                if (dist1[i] != dist2[i])
+                    return false;
+            }
+            return true;
+        }
+    }
+
+    public class Day6BlockRedistributor
+    {
+        public static Day6BlockRedistributorResult Redistribute(int[] initialDistibution)
+        {
+            var stack = new Day6BlockDistributionStack();
+            stack.Push(initialDistibution);
+            int count = 0;
+            var dist = initialDistibution;
+            bool finished = false;
+            int loopCount = 0;
+            while (!finished)
+            {
+                count++;
+                               
+                var newDist = RedistributeOnce(dist);
+                var result = stack.Push(newDist);
+                if (result.Success == false)
+                {
+                    finished = true;
+                    loopCount = count - result.Count +1;
+                }
+                else
+                    dist = newDist;
+            }
+            return new Day6BlockRedistributorResult { RedisributionCount = count, Distibution = dist, LoopCount = loopCount };
+        }
+
+        public static int[] RedistributeOnce(int[] distibution)
+        {
+            int[] newDist = Copy(distibution);
+            var index = GetMaxIndex(distibution);
+
+            int value = distibution[index];
+            newDist[index] = 0;
+
+            int i = index;
+            while (value > 0)
+            {
+                i++;
+                if (i >= newDist.Length)
+                    i = 0;
+                newDist[i]++;
+                value--;
+            }
+
+            return newDist;
+        }
+
+        private static int[] Copy(int[] initialDistibution)
+        {
+            int[] newDist = new int[initialDistibution.Length];
+            for (int i = 0; i < initialDistibution.Length; i++)
+            {
+                newDist[i] = initialDistibution[i];
+            }
+
+            return newDist;
+        }
+
+        public static int GetMaxIndex(int[] distibution)
+        {
+            int max = 0;
+            int pos = 0;
+            for (int i = 0; i < distibution.Length; i++)
+            {
+                int val = distibution[i];
+                if (val > max)
+                {
+                    max = val;
+                    pos = i;
+                }
+            }
+            return pos;
+        }
+    }
+
+
+    public class Day5Jumper
+    {
+        public static int Solve(int[] data)
+        {
+            int length = data.Length;
+            int steps = 0;
+            int pos = 0;
+            while (pos >= 0 && pos < length)
+            {
+                int jump = data[pos];
+                data[pos]++;
+                pos = pos + jump;
+                steps++;
+            }
+            return steps;
+        }
+
+        public static int Solve2(int[] data)
+        {
+            int length = data.Length;
+            int steps = 0;
+            int pos = 0;
+            while (pos >= 0 && pos < length)
+            {
+                int jump = data[pos];
+                if (jump >= 3)
+                    data[pos]--;
+                else
+                    data[pos]++;
+                pos = pos + jump;
+                steps++;
+            }
+            return steps;
+        }
+    }
+
     public class Day4PassphraseAnagramChecker
     {
         public static int Solve(string filename)
@@ -104,15 +273,15 @@ namespace AdventOfCode
 
         class SpiralMemory
         {
-            List<SpiralMemoryItem> data = new List<SpiralMemoryItem>();
+            readonly List<SpiralMemoryItem> _data = new List<SpiralMemoryItem>();
 
             public void Add(SpiralMemoryState state)
             {
-                data.Add(new SpiralMemoryItem(state));
+                Add(new SpiralMemoryItem(state));
             }
             public void Add(SpiralMemoryItem item)
             {
-                data.Add(item);
+                _data.Add(item);
             }
 
             public SpiralMemoryItem Get(Pos pos)
@@ -122,7 +291,7 @@ namespace AdventOfCode
 
             public SpiralMemoryItem Get(int x, int y)
             {
-                return data.FirstOrDefault(d => d.x == x & d.y == y);
+                return _data.FirstOrDefault(d => d.x == x & d.y == y);
             }            
         }
 
@@ -233,7 +402,7 @@ namespace AdventOfCode
             }
 
 
-            public int steps()
+            public int Steps()
             {
                 return Math.Abs(curX) + Math.Abs(curY);
             }
@@ -273,15 +442,15 @@ namespace AdventOfCode
             public int highY = 0;
             public int lowY = 0;
 
-            public void next()
+            public void Next()
             {
                 value++;
-                increaseCurr();
-                updateDirection();
-                updateSize();
+                IncreaseCurr();
+                UpdateDirection();
+                UpdateSize();
             }
 
-            public void increaseCurr()
+            public void IncreaseCurr()
             {
                 if (direction == 1)
                     curX++;
@@ -293,7 +462,7 @@ namespace AdventOfCode
                     curY--;
             }
 
-            public void updateDirection()
+            public void UpdateDirection()
             {
                 if (direction == 1 && curX > highX)
                     direction = 2;
@@ -305,7 +474,7 @@ namespace AdventOfCode
                     direction = 1;
             }
 
-            public void updateSize()
+            public void UpdateSize()
             {
                 if (curX > highX)
                     highX = curX;
@@ -319,7 +488,7 @@ namespace AdventOfCode
             }
 
 
-            public int steps()
+            public int Steps()
             {
                 return Math.Abs(curX) + Math.Abs(curY);
             }
@@ -328,8 +497,8 @@ namespace AdventOfCode
         {
             SpiralMemoryState state = new SpiralMemoryState();
             while (state.value < value)
-                state.next();
-            return state.steps();
+                state.Next();
+            return state.Steps();
         }
     }
 
@@ -428,6 +597,20 @@ namespace AdventOfCode
                     result += number;
             }
             return result;
+        }
+
+        public static int Solve1Func(string numbers)
+        {
+            IEnumerable<int> nums = numbers.Select(x => int.Parse(x.ToString())).ToArray();
+            return Solve1Func(nums.Last(), nums);
+        }
+
+        static int Solve1Func(int num, IEnumerable<int> nums) {
+
+            if (!nums.Any())
+                return 0;
+           
+            return (num == nums.First() ? num : 0) + Solve1Func(nums.First(), nums.Skip(1));
         }
 
         public static int Solve2(string numbers)
