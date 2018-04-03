@@ -7,6 +7,41 @@ namespace AdventOfCode.Test
     [TestClass]
     public class AdventOfCode2017Test
     {
+        // Day 9
+
+        [TestMethod]
+        public void Test_Day9_Score()
+        {
+            Assert.AreEqual(0, AdventOfCode2017Day9.Score("").Score);
+            Assert.AreEqual(1, AdventOfCode2017Day9.Score("{}").Score);
+            Assert.AreEqual(3, AdventOfCode2017Day9.Score("{{}}").Score);
+            Assert.AreEqual(6, AdventOfCode2017Day9.Score("{{{}}}").Score);
+            Assert.AreEqual(5, AdventOfCode2017Day9.Score("{{}{}}").Score);
+
+            Assert.AreEqual(16, AdventOfCode2017Day9.Score("{{{},{},{{}}}}").Score);
+            Assert.AreEqual(1, AdventOfCode2017Day9.Score("{<a>,<a>,<a>,<a>}").Score);
+            Assert.AreEqual(9, AdventOfCode2017Day9.Score("{{<ab>},{<ab>},{<ab>},{<ab>}}").Score);
+            Assert.AreEqual(9, AdventOfCode2017Day9.Score("{{<!!>},{<!!>},{<!!>},{<!!>}}").Score);
+            Assert.AreEqual(3, AdventOfCode2017Day9.Score("{{<a!>},{<a!>},{<a!>},{<ab>}}").Score);
+                        
+            Assert.AreEqual(12803, AdventOfCode2017Day9.Solve("Day9Data.txt").Score);
+        }
+
+        [TestMethod]
+        public void Test_Day9_GarbageCount()
+        {
+            Assert.AreEqual(0, AdventOfCode2017Day9.Score("").GarbageCount);
+            Assert.AreEqual(0, AdventOfCode2017Day9.Score("<>").GarbageCount);
+            Assert.AreEqual(17, AdventOfCode2017Day9.Score("<random characters>").GarbageCount);
+            Assert.AreEqual(3, AdventOfCode2017Day9.Score("<<<<>").GarbageCount);
+            Assert.AreEqual(2, AdventOfCode2017Day9.Score("<{!>}>").GarbageCount);
+            Assert.AreEqual(0, AdventOfCode2017Day9.Score("<!!>").GarbageCount);
+            Assert.AreEqual(0, AdventOfCode2017Day9.Score("<!!!>>").GarbageCount);
+            Assert.AreEqual(10, AdventOfCode2017Day9.Score("<{o\"i!a,<{i<a>").GarbageCount);
+
+            Assert.AreEqual(6425, AdventOfCode2017Day9.Solve("Day9Data.txt").GarbageCount);
+        }
+
         // Day 8
 
         [TestMethod]
