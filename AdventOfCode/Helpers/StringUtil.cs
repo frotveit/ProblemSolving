@@ -12,5 +12,12 @@ namespace AdventOfCode
             string[] words = line.Split(splitOn, options: StringSplitOptions.RemoveEmptyEntries);
             return words;
         }
+
+        public static string[] SplitOnComma(string line)
+        {
+            string[] splitOn = { "," };
+            string[] words = line.Split(splitOn, options: StringSplitOptions.RemoveEmptyEntries);
+            return words;
+        }
     }
 }

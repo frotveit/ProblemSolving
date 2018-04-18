@@ -50,20 +50,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdventOfCode2017.cs" />
+    <Compile Include="AdventOfCode2017Day10.cs" />
+    <Compile Include="AdventOfCode2017Day11.cs" />
     <Compile Include="AdventOfCode2017Day7.cs" />
     <Compile Include="AdventOfCode2017Day9.cs" />
+    <Compile Include="Helpers\ListUtil.cs" />
+    <Compile Include="Test\AdventOfCode2017Day10Test.cs" />
+    <Compile Include="Test\AdventOfCode2017Day11Test.cs" />
     <Compile Include="Test\AdventOfCode2017Day7Test.cs" />
     <Compile Include="AdventOfCode2017Day8.cs" />
     <Compile Include="Test\AdventOfCode2017Test.cs" />
+    <Compile Include="Test\ListUtilTest.cs" />
     <Compile Include="Test\TestFSharp.cs" />
-    <Compile Include="FileUtil.cs" />
+    <Compile Include="Helpers\FileUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringUtil.cs" />
+    <Compile Include="Helpers\StringUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Day11Data.txt" />
     <Content Include="Data\Day2Data.txt" />
     <Content Include="Data\Day4Data.txt" />
     <Content Include="Data\Day5Data.txt" />
