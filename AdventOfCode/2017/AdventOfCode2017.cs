@@ -1,10 +1,9 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdventOfCode.Helpers;
 
-namespace AdventOfCode
+namespace AdventOfCode._2017
 {
     public class AdventOfCode2017
     {
@@ -183,7 +182,7 @@ namespace AdventOfCode
     {
         public static int Solve(string filename)
         {
-            string[] lines = FileUtil.GetFile(filename);
+            string[] lines = FileUtil.Get2017File(filename);
             int count = 0;
             foreach (string line in lines)
             {
@@ -227,7 +226,7 @@ namespace AdventOfCode
     {
         public static int Solve(string filename)
         {
-            string[] lines = FileUtil.GetFile(filename);
+            string[] lines = FileUtil.Get2017File(filename);
             int count = 0;
             foreach (string line in lines)
             {

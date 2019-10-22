@@ -2,7 +2,7 @@
 using AdventOfCode.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AdventOfCode.Test
+namespace AdventOfCode._2017.Test
 {
     [TestClass]
     public class AdventOfCode2017Day10Test

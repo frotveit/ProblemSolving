@@ -1,15 +1,14 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using AdventOfCode.Helpers;
 
-namespace AdventOfCode
+namespace AdventOfCode._2017
 {
     public class AdventOfCode2017Day11
     {
         public static ProcessResult Solve(string filename)
         {
-            var input = FileUtil.GetFileLine(filename);
+            var input = FileUtil.Get2017FileLine(filename);
             var inputs = StringUtil.SplitOnComma(input);
 
             var result = ProcessSteps(inputs);

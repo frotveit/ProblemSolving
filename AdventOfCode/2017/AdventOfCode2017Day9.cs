@@ -1,8 +1,6 @@
-﻿
+﻿using AdventOfCode.Helpers;
 
-using System.Linq;
-
-namespace AdventOfCode
+namespace AdventOfCode._2017
 {
     public class AdventOfCode2017Day9
     {
@@ -61,7 +59,7 @@ namespace AdventOfCode
 
         public static Result Solve(string filename)
         {
-            string data = FileUtil.GetFileLine(filename);
+            string data = FileUtil.Get2017FileLine(filename);
             return Score(data);
         }
 

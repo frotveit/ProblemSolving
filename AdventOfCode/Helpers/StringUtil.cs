@@ -2,7 +2,7 @@
 
 using System;
 
-namespace AdventOfCode
+namespace AdventOfCode.Helpers
 {
     public class StringUtil
     {

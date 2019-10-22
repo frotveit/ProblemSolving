@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using AdventOfCode.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AdventOfCode.Test
+namespace AdventOfCode._2017.Test
 {
 
     [TestClass]
@@ -157,7 +158,7 @@ namespace AdventOfCode.Test
                 i++;
             }
 
-            string[] filedata = FileUtil.GetFile("Day5Data.txt");
+            string[] filedata = FileUtil.Get2017File("Day5Data.txt");
             int [] data2 = filedata.Select(int.Parse).ToArray();
 
             Assert.AreEqual(388611, Day5Jumper.Solve(data2));            
@@ -178,7 +179,7 @@ namespace AdventOfCode.Test
             }
 
 
-            string[] filedata = FileUtil.GetFile("Day5Data.txt");
+            string[] filedata = FileUtil.Get2017File("Day5Data.txt");
             int[] data2 = filedata.Select(int.Parse).ToArray();
 
             Assert.AreEqual(27763113, Day5Jumper.Solve2(data2));            
@@ -264,7 +265,7 @@ namespace AdventOfCode.Test
                 "3 8 6 5"
             };
             Assert.AreEqual(9, Day2Checksum.SolveEven(input));
-            string[] input3 = FileUtil.GetFile("Day2Data.txt");
+            string[] input3 = FileUtil.Get2017File("Day2Data.txt");
             Assert.AreEqual(242, Day2Checksum.SolveEven(input3));
         }
 
@@ -287,7 +288,7 @@ namespace AdventOfCode.Test
                 "2 4 6 8"
             };
             Assert.AreEqual(18, Day2Checksum.Solve1(input));
-            string[] input3 = FileUtil.GetFile("Day2Data.txt");
+            string[] input3 = FileUtil.Get2017File("Day2Data.txt");
             Assert.AreEqual(44887, Day2Checksum.Solve1(input3));
         }
         

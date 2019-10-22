@@ -1,9 +1,9 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdventOfCode.Helpers;
 
-namespace AdventOfCode
+namespace AdventOfCode._2017
 {
 
     public class AdventOfCode2017Day7
@@ -50,7 +50,7 @@ namespace AdventOfCode
 
         public static Result Solve (string filename)
         {
-            string[] filedata = FileUtil.GetFile(filename);
+            string[] filedata = FileUtil.Get2017File(filename);
             List<Input> inputs = new List<Input>();
             foreach (string row in filedata)
             {

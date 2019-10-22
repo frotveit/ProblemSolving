@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdventOfCode</RootNamespace>
     <AssemblyName>AdventOfCode</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
@@ -49,17 +49,18 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdventOfCode2017.cs" />
-    <Compile Include="AdventOfCode2017Day10.cs" />
-    <Compile Include="AdventOfCode2017Day11.cs" />
-    <Compile Include="AdventOfCode2017Day7.cs" />
-    <Compile Include="AdventOfCode2017Day9.cs" />
+    <Compile Include="2017\AdventOfCode2017.cs" />
+    <Compile Include="2017\AdventOfCode2017Day10.cs" />
+    <Compile Include="2017\AdventOfCode2017Day11.cs" />
+    <Compile Include="2017\AdventOfCode2017Day7.cs" />
+    <Compile Include="2017\AdventOfCode2017Day9.cs" />
+    <Compile Include="2018\AdventOfCode2018.cs" />
     <Compile Include="Helpers\ListUtil.cs" />
-    <Compile Include="Test\AdventOfCode2017Day10Test.cs" />
-    <Compile Include="Test\AdventOfCode2017Day11Test.cs" />
-    <Compile Include="Test\AdventOfCode2017Day7Test.cs" />
-    <Compile Include="AdventOfCode2017Day8.cs" />
-    <Compile Include="Test\AdventOfCode2017Test.cs" />
+    <Compile Include="2017\Test\AdventOfCode2017Day10Test.cs" />
+    <Compile Include="2017\Test\AdventOfCode2017Day11Test.cs" />
+    <Compile Include="2017\Test\AdventOfCode2017Day7Test.cs" />
+    <Compile Include="2017\AdventOfCode2017Day8.cs" />
+    <Compile Include="2017\Test\AdventOfCode2017Test.cs" />
     <Compile Include="Test\ListUtilTest.cs" />
     <Compile Include="Test\TestFSharp.cs" />
     <Compile Include="Helpers\FileUtil.cs" />
@@ -70,21 +71,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Day11Data.txt" />
-    <Content Include="Data\Day2Data.txt" />
-    <Content Include="Data\Day4Data.txt" />
-    <Content Include="Data\Day5Data.txt" />
-    <Content Include="Data\Day7Data.txt" />
-    <Content Include="Data\Day7FullData.txt" />
-    <Content Include="Data\Day8Data.txt" />
-    <Content Include="Data\Day8FullData.txt" />
-    <Content Include="Data\Day9Data.txt" />
+    <Content Include="2017\Data\Day11Data.txt" />
+    <Content Include="2017\Data\Day2Data.txt" />
+    <Content Include="2017\Data\Day4Data.txt" />
+    <Content Include="2017\Data\Day5Data.txt" />
+    <Content Include="2017\Data\Day7Data.txt" />
+    <Content Include="2017\Data\Day7FullData.txt" />
+    <Content Include="2017\Data\Day8Data.txt" />
+    <Content Include="2017\Data\Day8FullData.txt" />
+    <Content Include="2017\Data\Day9Data.txt" />
+    <Content Include="2018\Data\Day1.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventOfCodeFSharp\AdventOfCodeFSharp.fsproj">
       <Project>{990b0f9e-755f-4122-bac2-c4b402288c78}</Project>
       <Name>AdventOfCodeFSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="2018\Test\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Input = AdventOfCode.AdventOfCode2017Day7.Input;
-using Node = AdventOfCode.AdventOfCode2017Day7.Node;
+using Input = AdventOfCode._2017.AdventOfCode2017Day7.Input;
+using Node = AdventOfCode._2017.AdventOfCode2017Day7.Node;
 
-namespace AdventOfCode.Test
+namespace AdventOfCode._2017.Test
 {
     [TestClass]
     public class AdventOfCode2017Day7Test
