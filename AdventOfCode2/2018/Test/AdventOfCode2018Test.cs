@@ -47,5 +47,75 @@ namespace AdventOfCode2._2018.Test
             var filedata = FileUtil.Get2018File("Day1.txt");
             Assert.AreEqual(69074, Day1.CalculateRecurringFrequency(0, filedata));
         }
+
+
+        [TestMethod]
+        public void Day2_CountRow()
+        {
+            var count = Day2.CountRow("abcdef");
+            Assert.AreEqual(6, count.Count);
+            Assert.AreEqual(1, count['a']);
+        }
+
+        [TestMethod]
+        public void Day2_CalculateRowCount()
+        {
+            var count = Day2.CalculateRowCount("abcdef");
+            Assert.AreEqual(0, count.TwoCount);
+            Assert.AreEqual(0, count.ThreeCount);
+
+            count = Day2.CalculateRowCount("bababc");
+            Assert.AreEqual(1, count.TwoCount);
+            Assert.AreEqual(1, count.ThreeCount);
+
+            count = Day2.CalculateRowCount("abbcde");
+            Assert.AreEqual(1, count.TwoCount);
+            Assert.AreEqual(0, count.ThreeCount);
+
+            count = Day2.CalculateRowCount("abcccd");
+            Assert.AreEqual(0, count.TwoCount);
+            Assert.AreEqual(1, count.ThreeCount);
+
+            count = Day2.CalculateRowCount("aabcdd");
+            Assert.AreEqual(1, count.TwoCount);
+            Assert.AreEqual(0, count.ThreeCount);
+
+            count = Day2.CalculateRowCount("abcdee");
+            Assert.AreEqual(1, count.TwoCount);
+            Assert.AreEqual(0, count.ThreeCount);
+
+            count = Day2.CalculateRowCount("ababab");
+            Assert.AreEqual(0, count.TwoCount);
+            Assert.AreEqual(1, count.ThreeCount);
+        }
+        
+        [TestMethod]
+        public void CalculateTotalCount()
+        {
+            var res = Day2.CalculateTotalCount(new List<string>
+            {
+                "abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"
+            });
+            Assert.AreEqual(4, res.TwoCount);
+            Assert.AreEqual(3, res.ThreeCount);
+        }
+
+        [TestMethod]
+        public void CalculateChecksum()
+        {
+            var res = Day2.CalculateChecksum(new List<string>
+            {
+                "abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"
+            });
+            Assert.AreEqual(12, res);
+
+            var filedata = FileUtil.Get2018File("Day2.txt");
+            Assert.AreEqual(7904, Day2.CalculateChecksum(filedata));
+        }
+
     }
 }
+
+/*
+
+*/
