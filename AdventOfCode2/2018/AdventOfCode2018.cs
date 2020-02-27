@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 
 namespace AdventOfCode2._2018
 {
@@ -149,13 +148,49 @@ namespace AdventOfCode2._2018
 
     public class Day2Part2
     {
-        public string CompareRows(string row1, string row2)
+        public static IEnumerable<string> Calculate(IEnumerable<string> data)
         {
-            string result = string.Empty;
-            var chars1 = row1.ToCharArray();
-            var chars2 = row2.ToCharArray();
+            var d = data.ToList();
+            int count = data.Count();
+            var result = new List<string>();
+            for (int i = 0; i < count - 1; i++)
+            {
+                for (int j = i+1; j < count; j++)
+                {
+                    var r = DifferByOne(d[i], d[j]);
+                    if (r != null)
+                    {
+                        result.Add(r);
+                    }
+                }
+            }
 
-            
+            return result;
+        }
+
+        public static string DifferByOne(string row1, string row2)
+        {
+            int differCount = 0;
+            int length = row1.Length;
+            string result = string.Empty;
+
+            for (int i = 0; i < length; i++)
+            {
+                if (row1[i] == row2[i])
+                {
+                    result = result + row1[i];
+                }
+                else
+                {
+                    differCount++;
+                }
+            }
+
+            if (differCount == 1)
+            {
+                return result;
+            }
+
 
             return null;
         }

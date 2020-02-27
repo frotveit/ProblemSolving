@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AdventOfCode.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -90,7 +91,7 @@ namespace AdventOfCode2._2018.Test
         }
         
         [TestMethod]
-        public void CalculateTotalCount()
+        public void Day2_CalculateTotalCount()
         {
             var res = Day2.CalculateTotalCount(new List<string>
             {
@@ -101,7 +102,7 @@ namespace AdventOfCode2._2018.Test
         }
 
         [TestMethod]
-        public void CalculateChecksum()
+        public void Day2_CalculateChecksum()
         {
             var res = Day2.CalculateChecksum(new List<string>
             {
@@ -113,9 +114,33 @@ namespace AdventOfCode2._2018.Test
             Assert.AreEqual(7904, Day2.CalculateChecksum(filedata));
         }
 
+        [TestMethod]
+        public void Day2_2_DifferByOne()
+        {
+            Assert.AreEqual(null, Day2Part2.DifferByOne("abcde", "axcye"));
+            Assert.AreEqual("fgij", Day2Part2.DifferByOne("fghij", "fguij"));
+        }
+
+        [TestMethod]
+        public void Day2_2_Calculate()
+        {
+            var input1 = new List<string>
+            {
+                "abcde", "fghij", "klmno", "pqrst", "fguij", "axcye", "wvxyz"
+            };
+            var result1 = Day2Part2.Calculate(input1);
+
+            Assert.AreEqual(1, result1.Count());
+            Assert.AreEqual("fgij", result1.First());
+
+            var input2 = FileUtil.Get2018File("Day2.txt");
+
+            var result2 = Day2Part2.Calculate(input2);
+
+            Assert.AreEqual(1, result2.Count());
+            Assert.AreEqual("wugbihckpoymcpaxefotvdzns", result2.First());
+
+        }
+
     }
 }
-
-/*
-
-*/
