@@ -142,5 +142,44 @@ namespace AdventOfCode2._2018.Test
 
         }
 
+        [TestMethod]
+        public void Day3_Parse()
+        {
+            var res1 = Day3.Parse("#1 @ 1,3: 4x4"); 
+            var res2 = Day3.Parse("#2 @ 3,1: 4x4"); 
+            var res3 = Day3.Parse("#3 @ 5,5: 2x2");
+
+            Assert.AreEqual(1, res1.Id);
+            Assert.AreEqual(1, res1.Location.X); 
+            Assert.AreEqual(3, res1.Location.Y); 
+            Assert.AreEqual(4, res1.Size.X); 
+            Assert.AreEqual(4, res1.Size.Y);
+        }
+
+        [TestMethod]
+        public void Day3_Calculate()
+        {
+            var input1 = new List<string>(){ "#1 @ 1,3: 4x4", "#2 @ 3,1: 4x4", "#3 @ 5,5: 2x2" };
+            Assert.AreEqual(4, Day3.Calculate(8, 8, input1).OverlappingCount);
+
+            var input2 = FileUtil.Get2018File("Day3.txt");
+            Assert.AreEqual(110389, Day3.Calculate(1000, 1000, input2).OverlappingCount);
+        }
+
+        [TestMethod]
+        public void Day3_CalculatePart2()
+        {
+            var input1 = new List<string>() { "#1 @ 1,3: 4x4", "#2 @ 3,1: 4x4", "#3 @ 5,5: 2x2" };
+            Assert.AreEqual(1, Day3.Calculate(8, 8, input1).NonOverlappingClaims.Count()); 
+            Assert.AreEqual(3, Day3.Calculate(8, 8, input1).NonOverlappingClaims.First());
+
+            var input2 = FileUtil.Get2018File("Day3.txt");
+            Assert.AreEqual(1, Day3.Calculate(1000, 1000, input2).NonOverlappingClaims.Count()); 
+            Assert.AreEqual(552, Day3.Calculate(1000, 1000, input2).NonOverlappingClaims.First());
+        }
+
     }
 }
+
+
+
