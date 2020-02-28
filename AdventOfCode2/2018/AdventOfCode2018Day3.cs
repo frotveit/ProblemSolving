@@ -39,6 +39,7 @@ namespace AdventOfCode2._2018
             {
                 Size = size;
                 Count = new int[size.X, size.Y];
+                Init(this);
             }
         }
 
@@ -57,7 +58,7 @@ namespace AdventOfCode2._2018
         }
 
         /// <summary>
-        /// Input: #1 @ 1,3: 4x4
+        /// Input: "#1 @ 1,3: 4x4"
         /// </summary>
         /// <param name="claim"></param>
         /// <returns></returns>
@@ -66,32 +67,51 @@ namespace AdventOfCode2._2018
             claim = claim.Remove(0, 1);
             var split1 = claim.Split('@', StringSplitOptions.RemoveEmptyEntries);
             var split2 = split1[1].Split(':', StringSplitOptions.RemoveEmptyEntries);
-            var locationSplit = split2[0].Split(',');
-            var sizeSplit = split2[1].Split('x');
-
+            
+            
             return new Claim
             {
                 Id = int.Parse(split1[0]),
-                Location = new Location
-                {
-                    X = int.Parse(locationSplit[0]),
-                    Y = int.Parse(locationSplit[1])
-                },
-                Size = new Size
-                {
-                    X = int.Parse(sizeSplit[0]),
-                    Y = int.Parse(sizeSplit[1])
-                }
+                Location = ParseLocation(split2[0]),
+                Size = ParseSize(split2[1])
             };
 
+        }
+
+        /// <summary>
+        /// Input: " 1,3"
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
+        public static Location ParseLocation(string location)
+        {
+            var locationSplit = location.Split(',');
+            return new Location
+            {
+                X = int.Parse(locationSplit[0]),
+                Y = int.Parse(locationSplit[1])
+            };
+        }
+
+        /// <summary>
+        /// Input: " 4x4"
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static Size ParseSize(string size)
+        {
+            var sizeSplit = size.Split('x');
+            return new Size
+            {
+                X = int.Parse(sizeSplit[0]),
+                Y = int.Parse(sizeSplit[1])
+            };
         }
 
         public static ClaimsResult Calculate(Size boardSize, IEnumerable<Claim> claims)
         {
             var claimCount = new ClaimCount(boardSize);
-
-            Init(claimCount);
-
+            
             RunClaims(claimCount, claims);
 
             return new ClaimsResult()
